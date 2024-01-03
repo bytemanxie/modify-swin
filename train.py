@@ -17,8 +17,6 @@ def main(args):
     if os.path.exists("./weights") is False:
         os.makedirs("./weights")
 
-    tb_writer = SummaryWriter()
-
     train_images_path, train_images_label, val_images_path, val_images_label = read_split_data(args.data_path)
 
     img_size = 224
