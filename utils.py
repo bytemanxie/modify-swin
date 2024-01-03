@@ -172,7 +172,9 @@ class SoftTargetCrossEntropy(nn.Module):
         super(SoftTargetCrossEntropy, self).__init__()
 
     def forward(self, x, target):
-        target = F.one_hot(target, x.shape[-1])  # 转换成one-hot
+        target = F.one_hot(target, x.shape[-1]) 
+        target = torch.clamp(target.float(), min=0.1 / (45 - 1),
+                                 max=1.0 - 0.1)
         loss = torch.sum(-target * F.log_softmax(x, dim=-1), dim=-1)
         return loss.mean()
 
