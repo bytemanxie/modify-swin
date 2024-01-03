@@ -1,0 +1,2 @@
+# swin_transformer复现加改进代码
+mammals数据集可在kaggal官网下载
