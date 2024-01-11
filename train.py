@@ -78,14 +78,6 @@ def main(args):
         # 加载更新后的权重到模型
         model.load_state_dict(model_dict, strict=False)
 
-        # 手动初始化缺失的键
-        for name, param in model.named_parameters():
-            if name not in weights_dict:
-                if 'weight' in name:
-                    nn.init.kaiming_normal_(param)
-                elif 'bias' in name:
-                    nn.init.zeros_(param)
-        print(model.load_state_dict(model_dict, strict=False))
 
     if args.freeze_layers:
         for name, para in model.named_parameters():
